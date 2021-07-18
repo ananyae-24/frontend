@@ -1,0 +1,17 @@
+.center {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  text-align: center;
+  border: 5px solid black;
+  box-shadow: 10px;
+  width: 30%;
+  height: 300px;
+  border-radius: 10px;
+}
+.padding {
+  padding-top: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}

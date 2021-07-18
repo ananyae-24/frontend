@@ -1,0 +1,29 @@
+.grid {
+  position: relative;
+  top: 100px;
+  left: 35%;
+  height: 300px;
+  width: 300px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 50px 50px;
+}
+.ann {
+  text-align: center;
+  font-size: 30px;
+  width: 500px;
+  height: 100px;
+  border-radius: 20px;
+  position: relative;
+  left: 33.5%;
+  top: 250px;
+}
+.red {
+  background-color: salmon;
+}
+.green {
+  background-color: lightgreen;
+}
+.p {
+  padding-top: 20px;
+}
