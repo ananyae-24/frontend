@@ -6,6 +6,7 @@ function Game(props) {
   let { gameState, gameDispatch } = useContext(GlobalContext);
   let myid = gameState.myid;
   let socket = props.socket;
+
   let [win, setWin] = useState({ winner: null });
   let [state, setState] = useState({
     id_to_play: "player1",
@@ -41,14 +42,18 @@ function Game(props) {
     setState((prevState) => {
       return temp;
     });
+    return () => {
+      let data = { gameid: gameState.gameid, id_of_playerleft: gameState.myid };
+      socket.emit("leave", data);
+    };
   }, []);
-  useEffect(() => {
-    socket.on("move", (data) => {
-      setState((prevState) => {
-        return data;
-      });
+  socket.on("move", (data) => {
+    // console.log("move", data);
+    setState((prevState) => {
+      return data;
     });
   });
+  useEffect(() => {});
   function sendinfo() {
     let data = { state, gameid: gameState.gameid };
     socket.emit("move", data);
@@ -69,11 +74,14 @@ function Game(props) {
       }
       if (player === "player1") new_player.id_to_play = "player2";
       else new_player.id_to_play = "player1";
+      console.log("new state", new_player);
       setState((prevState) => {
         return new_player;
       });
     }
+    console.log("state", state);
     call_check_state();
+    sendinfo();
   }
 
   function select_a_piece(box) {
@@ -149,7 +157,6 @@ function Game(props) {
         setWin({ winner: "player2" });
       }
     }
-    sendinfo();
   }
   function checkwinstate(arr) {
     let x = false;

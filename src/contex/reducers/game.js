@@ -11,8 +11,7 @@ const game = (state, { type, payload }) => {
       id_player_2: payload.id_player_2,
     };
   } else if (type === "MYID") {
-    if (!state.myid) return { ...state, myid: payload };
-    else return { ...state };
+    return { ...state, myid: payload };
   } else return state;
 };
 export default game;

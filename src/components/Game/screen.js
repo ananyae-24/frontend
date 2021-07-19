@@ -23,9 +23,11 @@ function Screen(props) {
       });
     });
   });
+
   function leave_handler(e) {
     e.preventDefault();
-    socket.emit("leave", gameState.gameid);
+    let data = { gameid: gameState.gameid, id_of_playerleft: gameState.myid };
+    socket.emit("leave", data);
     setState((prevState) => {
       return { ...prevState, disable: true };
     });

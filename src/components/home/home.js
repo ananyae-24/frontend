@@ -18,9 +18,8 @@ function Home(props) {
   const history = useHistory();
   useEffect(() => {
     socket.on("Waiting for other player to join", (data) => {
+      let id = data.id_player_1;
       setState((prevState) => {
-        let id = data.id_player_1;
-        Myid(id)(gameDispatch);
         return {
           ...prevState,
           message: "Waiting for other player to join",
@@ -34,7 +33,6 @@ function Home(props) {
       let id_player_1 = game.id_player_1;
       let player2 = game.player2;
       let id_player_2 = game.id_player_2;
-      Myid(id_player_2)(gameDispatch);
       let data = {
         gameid,
         user: socket.id,
@@ -62,7 +60,7 @@ function Home(props) {
   }
   function join_room(e) {
     e.preventDefault();
-    socket.emit("random_join", { name: state.name });
+    socket.emit("random_join", { id: gameState.myid, name: state.name });
     setState((prevState) => {
       return { ...prevState, disabled: true };
     });

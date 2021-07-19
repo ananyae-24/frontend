@@ -1,28 +1,30 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter } from "react-router-dom";
-import socketClient from "socket.io-client";
 import Navbar from "./components/NavBar/Navbar";
 import Router from "./components/router/router";
-import GlobalProvider from "./contex/reducers/Provider";
-const SERVER = "http://127.0.0.1:8000";
-function App() {
-  let socket = socketClient(SERVER);
+
+import { GlobalContext } from "./contex/reducers/Provider";
+import Myid from "./contex/action/myid";
+
+function App(props) {
+  let socket = props.socket;
   let [msg, setmsg] = useState(0);
+  let { gameState, gameDispatch } = useContext(GlobalContext);
+  console.log(gameState);
   useEffect(() => {
     socket.on("init", (msg) => {
-      setmsg(msg);
+      // console.log(msg);
+      Myid(msg)(gameDispatch);
     });
   }, []);
   return (
     <div>
-      <GlobalProvider>
-        <Navbar />
-        <BrowserRouter>
-          <Router socket={socket} id={msg} />
-        </BrowserRouter>
-      </GlobalProvider>
+      <Navbar />
+      <BrowserRouter>
+        <Router socket={socket} id={msg} />
+      </BrowserRouter>
     </div>
   );
 }
