@@ -12,13 +12,9 @@ function App(props) {
   let socket = props.socket;
   let [msg, setmsg] = useState(0);
   let { gameState, gameDispatch } = useContext(GlobalContext);
-  console.log(gameState);
-  useEffect(() => {
-    socket.on("init", (msg) => {
-      // console.log(msg);
-      Myid(msg)(gameDispatch);
-    });
-  }, []);
+  socket.on("init", (msg) => {
+    Myid(msg)(gameDispatch);
+  });
   return (
     <div>
       <Navbar />

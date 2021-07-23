@@ -42,10 +42,6 @@ function Game(props) {
     setState((prevState) => {
       return temp;
     });
-    return () => {
-      let data = { gameid: gameState.gameid, id_of_playerleft: gameState.myid };
-      socket.emit("leave", data);
-    };
   }, []);
   socket.on("move", (data) => {
     // console.log("move", data);
@@ -74,12 +70,12 @@ function Game(props) {
       }
       if (player === "player1") new_player.id_to_play = "player2";
       else new_player.id_to_play = "player1";
-      console.log("new state", new_player);
+      // console.log("new state", new_player);
       setState((prevState) => {
         return new_player;
       });
     }
-    console.log("state", state);
+    // console.log("state", state);
     call_check_state();
     sendinfo();
   }
@@ -92,8 +88,8 @@ function Game(props) {
   }
   function check_its_my_turn() {
     let curr_turn = state.id_to_play;
-    console.log(state[curr_turn].id, myid);
-    console.log(state[curr_turn].id === myid);
+    // console.log(state[curr_turn].id, myid);
+    // console.log(state[curr_turn].id === myid);
     return state[curr_turn].id === myid;
   }
   function click_handler(e, box, player, player_not_playing) {

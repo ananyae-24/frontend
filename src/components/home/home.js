@@ -3,7 +3,6 @@ import styles from "./home.module.css";
 import { GlobalContext } from "../../contex/reducers/Provider";
 import action from "../../contex/action/game";
 import { useHistory } from "react-router-dom";
-import Myid from "../../contex/action/myid";
 function Home(props) {
   let [state, setState] = useState({
     name: "",
@@ -17,6 +16,12 @@ function Home(props) {
   let socket = props.socket;
   const history = useHistory();
   useEffect(() => {
+    socket.on("Code to the friend", (data) => {
+      // console.log(data);
+      setState((prevState) => {
+        return { ...prevState, code_: data.token, gameid: data.game._id };
+      });
+    });
     socket.on("Waiting for other player to join", (data) => {
       let id = data.id_player_1;
       setState((prevState) => {
@@ -65,6 +70,18 @@ function Home(props) {
       return { ...prevState, disabled: true };
     });
   }
+  function play_against_friends(e) {
+    e.preventDefault();
+    socket.emit("friend_join", {
+      token: state.code,
+      id: gameState.myid,
+      name: state.name,
+    });
+  }
+  function generate_code(e) {
+    e.preventDefault();
+    socket.emit("friend", { id: gameState.myid, name: state.name });
+  }
   return (
     <div className={styles.center}>
       <div>{state.message}</div>
@@ -83,18 +100,26 @@ function Home(props) {
         Play against ramdom players
       </button>
       <br />
-      {/* <p>Enter Code</p>
-      <input
-        className={styles.padding}
-        type="text"
-        value={state.code}
-        onChange={(e) => {
-          e.preventDefault();
-          changecode(e);
-        }}
-      />
-      <br />
-      <button>Play against friend</button> */}
+      <button onClick={generate_code}>
+        Generate code to play against friend
+      </button>
+      <p>Enter Code</p>
+      {state.code_ ? <p>Give this code to friend:-{state.code_}</p> : null}
+      {!state.code_ ? (
+        <div>
+          <input
+            className={styles.padding}
+            type="text"
+            value={state.code}
+            onChange={(e) => {
+              e.preventDefault();
+              changecode(e);
+            }}
+          />
+          <br />
+          <button onClick={play_against_friends}>Play against friend</button>
+        </div>
+      ) : null}
     </div>
   );
 }
