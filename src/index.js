@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import GlobalProvider from "./contex/reducers/Provider";
 import socketClient from "socket.io-client";
-const SERVER = "http://localhost:8080/"; //"https://sheltered-headland-12004.herokuapp.com/";
+const SERVER = "https://sheltered-headland-12004.herokuapp.com/"; //http://localhost:3000/
 let socket = socketClient(SERVER);
 ReactDOM.render(
   <React.StrictMode>
