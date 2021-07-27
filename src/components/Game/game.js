@@ -175,35 +175,33 @@ function Game(props) {
     if (from === null) return true;
     let x = false;
     if (from % len !== 0 && from % len !== len - 1) {
-      if (
-        to === from + 1 ||
-        to === from - 1 ||
-        to === from + len ||
-        to === from - len ||
-        to === from + len - 1 ||
-        to === from + len + 1 ||
-        to === from - len + 1 ||
-        to === from - len - 1
-      )
+      if (from === 0) {
+        if (to === 1 || to === 3 || to === 4) x = true;
+      }
+      if (from === 1) {
+        if (to === 0 || to === 2 || to === 4) x = true;
+      }
+      if (from === 2) {
+        if (to === 1 || to === 4 || to === 5) x = true;
+      }
+      if (from === 3) {
+        if (to === 0 || to === 6 || to === 4) x = true;
+      }
+      if (from === 4) {
         x = true;
-    } else if (from % len === len - 1) {
-      if (
-        to === from - 1 ||
-        to === from + len ||
-        to === from + len - 1 ||
-        to === from - len ||
-        to === from - len - 1
-      )
-        x = true;
-    } else if (from % len === 0) {
-      if (
-        to === from + 1 ||
-        to === from + len ||
-        to === from + len + 1 ||
-        to === from - len ||
-        to === from - len + 1
-      )
-        x = true;
+      }
+      if (from === 5) {
+        if (to === 8 || to === 2 || to === 4) x = true;
+      }
+      if (from === 6) {
+        if (to === 7 || to === 3 || to === 4) x = true;
+      }
+      if (from === 7) {
+        if (to === 6 || to === 8 || to === 4) x = true;
+      }
+      if (from === 8) {
+        if (to === 7 || to === 5 || to === 4) x = true;
+      }
     }
     return x;
   }
