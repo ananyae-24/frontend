@@ -44,7 +44,10 @@ function Screen(props) {
       {state.over ? (
         <div className={styles.center}>
           <p>{state.message ? state.message : "Game Over"}</p>
-          <button disabled={state.disable} onClick={leave_handler}>
+          <button
+            className={styles.leave}
+            disabled={state.disable}
+            onClick={leave_handler}>
             Leave
           </button>
         </div>

@@ -6,11 +6,11 @@
   background-color: rgb(202, 202, 236);
 }
 .box_red {
-  background-color: red;
+  background-color: rgb(198, 61, 211);
 }
 .box_green {
-  background-color: green;
+  background-color: rgb(15, 125, 189);
 }
 .box_selected {
-  border: 10px double dodgerblue;
+  border: 10px double rgb(255, 30, 30);
 }

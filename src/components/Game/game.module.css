@@ -19,10 +19,10 @@
   top: 250px;
 }
 .red {
-  background-color: salmon;
+  background-color: rgb(201, 108, 209);
 }
 .green {
-  background-color: lightgreen;
+  background-color: rgb(54, 135, 182);
 }
 .p {
   padding-top: 20px;

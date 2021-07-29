@@ -1,25 +1,29 @@
 .right {
-  width: 30%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   position: absolute;
-  top: 0;
-  left: 0;
-  background-color: red;
-  z-index: -10;
+  top: 40%;
+  left: 10%;
+  background-color: rgb(198, 61, 211);
+  z-index: 2;
   text-align: center;
+  border-radius: 20px;
+  color: white;
 }
 .left {
-  width: 30%;
-  height: 100%;
+  color: white;
+  width: 200px;
+  height: 200px;
   position: absolute;
-  top: 0;
-  right: 0;
-  background-color: green;
-  z-index: -10;
+  top: 40%;
+  right: 10%;
+  background-color: rgb(15, 125, 189);
+  z-index: 2;
   text-align: center;
+  border-radius: 20px;
 }
 .text {
-  padding: 50% 0;
+  padding-top: 50px;
 }
 .center {
   position: absolute;
@@ -27,4 +31,14 @@
   width: 250px;
   height: 100px;
   text-align: center;
+  background-color: red;
+  color: white;
+  padding: 10px 10px;
+  z-index: 100;
+  border-radius: 20px;
+}
+.leave {
+  background-color: rgb(16, 108, 230);
+  color: white;
+  border-radius: 5px;
 }

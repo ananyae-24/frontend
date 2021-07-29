@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import "./App.css";
+import styles from "./App.module.css";
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/NavBar/Navbar";
@@ -17,6 +17,7 @@ function App(props) {
   });
   return (
     <div>
+      <div className={styles.bg}></div>
       <Navbar />
       <BrowserRouter>
         <Router socket={socket} id={msg} />
